@@ -1,0 +1,28 @@
+
+CREATE Scanner to receive user input
+CREATE empty list 'temps' to store temperatures (Double)
+CREATE empty list 'days' to store days of the week (String)
+
+FOR i from 0 to 6 DO
+    PROMPT user: "Enter the Day of the week it is."
+    READ 'day' as a String
+    PROMPT user: "Enter the temperature in Fahrenheit for this day."
+    READ 'temp' as a Double
+    ADD 'day' to 'days' list
+    ADD 'temp' to 'temps' list
+END FOR
+
+PROMPT user: "Type 'week' to display the full week's data and average temperature:"
+READ 'showData' as a String
+
+IF 'showData' equals "week" (ignoring case) THEN
+    SET totalTemp = 0
+    FOR i from 0 to size of 'days' - 1 DO
+        DISPLAY days[i] + ": " + temps[i] + "°F"
+        ADD temps[i] to totalTemp
+    END FOR
+    CALCULATE avgTemp = totalTemp / number of temps
+    DISPLAY "The average temperature is " + avgTemp + "°F."
+END IF
+
+CLOSE the Scanner
